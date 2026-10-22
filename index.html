@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timer Belajar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Karla:wght@400;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-mode="fokus" data-state="idle">
+
+  <div class="page">
+
+    <header class="masthead">
+      <h1>Timer Belajar</h1>
+      <p class="subhead">Atur satu sesi, tekan mulai, dan biarkan halaman ini yang menjaga waktumu.</p>
+    </header>
+
+    <nav class="view-nav" aria-label="Navigasi tampilan">
+      <button type="button" class="active" data-view="viewTimer" aria-current="page">Timer</button>
+      <button type="button" data-view="viewRiwayat">Riwayat</button>
+      <button type="button" data-view="viewStatistik">Statistik</button>
+    </nav>
+
+    <main class="desk view" id="viewTimer">
+
+      <section class="setup-card" aria-label="Pengaturan sesi">
+        <form id="sessionForm" novalidate>
+
+          <div class="field">
+            <label for="sessionName">Nama sesi</label>
+            <input type="text" id="sessionName" name="sessionName" placeholder="Contoh: Belajar PPV" autocomplete="off">
+            <p class="field-error" id="nameError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="duration">Durasi (menit)</label>
+            <input type="number" id="duration" name="duration" placeholder="1" value="25" min="1" max="120" inputmode="numeric">
+            <p class="field-error" id="durationError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <span class="field-label">Mode</span>
+            <div class="mode-toggle">
+              <label class="mode-option">
+                <input type="radio" name="mode" value="fokus" checked>
+                <span>Fokus</span>
+              </label>
+              <label class="mode-option">
+                <input type="radio" name="mode" value="istirahat">
+                <span>Istirahat</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="startBtn">Mulai</button>
+            <button type="button" id="resetBtn">Atur ulang</button>
+          </div>
+
+          <p class="hint">Tekan <kbd>Space</kbd> untuk mulai / jeda cepat, kapan saja di luar kolom isian.</p>
+        </form>
+      </section>
+
+      <section class="timer-card" aria-label="Tampilan timer">
+
+        <div class="ring" id="ring">
+          <div class="ring-inner">
+            <span class="status" id="statusLabel" aria-live="polite">Siap saat kamu siap</span>
+            <span class="clock" id="clockDisplay" role="timer" aria-live="off">25:00</span>
+            <span class="session-name" id="activeSessionName" aria-live="polite">Belum ada sesi berjalan</span>
+          </div>
+        </div>
+
+        <div class="loading" id="loadingState" hidden>
+          <div class="spinner" aria-hidden="true"></div>
+          <p>Menyiapkan sesi&hellip;</p>
+        </div>
+
+      </section>
+
+    </main>
+
+    <section class="history view" id="viewRiwayat" aria-label="Riwayat sesi hari ini" hidden>
+      <h2>Riwayat hari ini</h2>
+      <p class="empty-state" id="emptyState">Belum ada sesi belajar hari ini. Mulai sesi pertamamu di tab Timer.</p>
+      <ul class="history-list" id="historyList" hidden></ul>
+    </section>
+
+    <section class="stats view" id="viewStatistik" aria-label="Statistik belajar hari ini" hidden>
+      <h2>Statistik hari ini</h2>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <span class="stat-value" id="statTotal">0</span>
+          <span class="stat-label">menit fokus</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statCount">0</span>
+          <span class="stat-label">sesi fokus selesai</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" id="statAvg">0</span>
+          <span class="stat-label">rata-rata menit / sesi</span>
+        </div>
+      </div>
+
+      <div class="stats-lower">
+        <figure class="badge-card">
+          <img id="badgeImg" alt="" width="160" height="160">
+          <figcaption>
+            <strong id="badgeTitle">Tunas Baru</strong>
+            <span id="badgeNote"></span>
+          </figcaption>
+        </figure>
+
+        <div class="chart-card">
+          <h3>Durasi tiap sesi fokus</h3>
+          <div class="chart" id="chart" role="img" aria-label="Grafik batang durasi sesi fokus"></div>
+          <p class="empty-state" id="chartEmpty">Grafik muncul setelah ada sesi fokus yang selesai.</p>
+        </div>
+      </div>
+
+      <div class="audio-card">
+        <h3>Bunyi bel saat sesi selesai</h3>
+        <p>Bel ini otomatis berbunyi ketika timer habis. Coba dulu di sini:</p>
+        <audio id="bellAudio" controls preload="auto"></audio>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

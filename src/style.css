@@ -252,7 +252,7 @@ h3 { margin: 0 0 8px; font-size: 1.05rem; }
   border: 1px solid var(--line);
   border-radius: 12px;
 }
-.history-list .h-name { flex: 1; min-width: 120px; font-weight: 700; }
+.history-list .h-name { flex: 1; min-width: 120px; font-weight: 700; overflow-wrap: anywhere; }
 .tag {
   font-size: 0.75rem;
   font-weight: 700;

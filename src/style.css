@@ -152,8 +152,8 @@ input:disabled { opacity: 0.6; cursor: not-allowed; }
 .hint { color: var(--muted); font-size: 0.88rem; margin: 16px 0 0; }
 kbd {
   font-family: 'Space Mono', monospace;
+  color: var(--ink);
   background: var(--track);
-  padding: 1px 7px;
   border-radius: 6px;
   font-size: 0.85em;
 }

@@ -50,8 +50,8 @@
     }
   }
   function saveSessions() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions)); } catch (e) { /* abaikan */ }
-  }
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions)); } catch (e) { /* abaikan */ }
+}
   let sessions = loadSessions();
 
   function makeBellUrl() {

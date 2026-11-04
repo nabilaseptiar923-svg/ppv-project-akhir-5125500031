@@ -1,0 +1,20 @@
+{
+  "short_name": "TimerBelajar",
+  "name": "Timer Belajar — Aplikasi Pengatur Waktu Fokus",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "type": "image/png",
+    "sizes": "512x512"
+  }
+],
+  "start_url": ".",
+  "background_color": "#f6f0e6",
+  "theme_color": "#c4552d",
+  "display": "standalone"
+}
